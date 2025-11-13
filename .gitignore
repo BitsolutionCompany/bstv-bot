@@ -1,0 +1,11 @@
+node_modules/
+.wwebjs_auth/
+.wwebjs_cache/
+.local-chromium/
+.env
+*.log
+.DS_Store
+logs/*.json
+logs/
+
+session/
