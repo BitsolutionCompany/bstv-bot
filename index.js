@@ -1,5 +1,6 @@
 import Whatsapp from "whatsapp-web.js";
 import qrcode from "qrcode-terminal";
+import http from 'http';
 
 const { Client, LocalAuth } = Whatsapp;
 
@@ -46,7 +47,6 @@ client.on("disconnected", (reason) => {
 client.initialize();
 
 const PORT = process.env.PORT || 8080;
-const http = require('http');
 
 http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
