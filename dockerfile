@@ -1,5 +1,5 @@
 # Usa a imagem oficial do Node.js 18
-FROM node:18-slim
+FROM node:20-slim
 
 # Instala as dependências de sistema necessárias para o Puppeteer (Chromium)
 # Estas são as bibliotecas essenciais para rodar o navegador em modo headless
