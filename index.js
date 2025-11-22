@@ -21,12 +21,14 @@ const client = new Client({
 });
 
 client.on("qr", (qr) => {
-  console.log("📷 QR Code recebido, gerando no terminal...");
+  console.log("=================================================");
+  console.log("📷 QR Code recebido. ESCANEIE O LOG RAPIDAMENTE:");
   qrcode.generate(qr, { small: true });
+  console.log("=================================================");
 });
 
 client.on("ready", () => {
-    console.log("Clinet is on!")
+    console.log("✅ Cliente do WhatsApp está pronto!");
 })
 
 client.on("message", async (message) => {
@@ -35,6 +37,20 @@ client.on("message", async (message) => {
     }
 })
 
-client.on("auth_failure", () => console.error("Falha na Autenticação"))
+client.on("auth_failure", (msg) => console.error("❌ Falha na Autenticação:", msg));
 
-client.initialize()
+client.on("disconnected", (reason) => {
+  console.error("🚫 Cliente desconectado. Tentando reconectar...", reason);
+});
+
+client.initialize();
+
+const PORT = process.env.PORT || 8080;
+const http = require('http');
+
+http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('WhatsApp Bot Worker is running.\n');
+}).listen(PORT, () => {
+  console.log(`Worker Webhook placeholder rodando na porta: ${PORT}`);
+});
