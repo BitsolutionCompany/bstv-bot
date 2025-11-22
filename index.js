@@ -42,6 +42,7 @@ client.on("auth_failure", (msg) => console.error("❌ Falha na Autenticação:",
 
 client.on("disconnected", (reason) => {
   console.error("🚫 Cliente desconectado. Tentando reconectar...", reason);
+  process.exit(1);
 });
 
 client.initialize();
