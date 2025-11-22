@@ -37,4 +37,4 @@ client.on("message", async (message) => {
 
 client.on("auth_failure", () => console.error("Falha na Autenticação"))
 
-client.inicialize()
+client.initialize()

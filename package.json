@@ -1,6 +1,6 @@
 {
-  "name": "UNISB BOT",
-  "version": "2.0.0",
+  "name": "BSTV_BOT",
+  "version": "1.0.0",
   "type": "module",
   "dependencies": {
     "express": "^5.1.0",
