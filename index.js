@@ -20,6 +20,8 @@ const client = new Client({
     }
 });
 
+let contacts = {};
+
 client.on("qr", (qr) => {
     console.log("QR RECEIVED");
     qrcode.generate(qr, { small: true });
@@ -31,12 +33,15 @@ client.on("ready", () => {
 
 client.on("message", async (message) => {
     const { from, body } = message;
-    const steep = 1;
 
-    if (steep === 1){
-        client.sendMessage(from, `Bem vindo à Bitsolution Company! Sou seu assistente Virtual, como posso ajudar?`);
-        steep++;
-    }
+    const contact = (contacts[from] || (contacts[from] = { state: 0 }));
+
+    switch (contact.state) {
+        case 0:
+            await message.reply(`Olá! Bem-Vindo à BitSolution Company! Como podemos ajudar Você?`);
+            contact.state = 1;
+            break;
+    };
 });
 
 client.initialize();
