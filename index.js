@@ -39,7 +39,7 @@ client.on("message", async (message) => {
     switch (contact.state) {
         case 0:
             await message.reply(`Olá! Bem-Vindo à BitSolution Company! Como podemos ajudar Você?`);
-            contact.state = 1;
+            contact.state++;
             break;
     };
 });
