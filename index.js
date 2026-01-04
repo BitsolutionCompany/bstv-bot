@@ -21,7 +21,7 @@ const client = new Client({
 });
 
 client.on("qr", (qr) => {
-    console.log("QR RECEIVED", qr);
+    console.log("QR RECEIVED");
     qrcode.generate(qr, { small: true });
 });
 
@@ -30,8 +30,11 @@ client.on("ready", () => {
 });
 
 client.on("message", async (message) => {
-    if (message.body.toLowerCase() === "ping") {
-        message.reply("pong");
+    const { from, body } = message;
+    const steep = 1;
+
+    if (steep === 1){
+        message.reply(`Echo: ${body}`);
     }
 });
 
