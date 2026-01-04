@@ -1,7 +1,7 @@
 import Whatsapp from "whatsapp-web.js";
 import qrcode from "qrcode-terminal";
 
-const { Client, LocalAuth } = Whatsapp;
+const { Client, LocalAuth, List } = Whatsapp;
 
 
 const client = new Client({
@@ -22,6 +22,24 @@ const client = new Client({
 
 let contacts = {};
 
+const sections = [
+    {
+        title: "Escolha uma opção",
+        rows: [
+            { id: "info", title: "Informações sobre a BitSolution" },
+            { id: "support", title: "Suporte Técnico" },
+            { id: "sales", title: "Falar com Vendas" }
+        ]
+    }
+];
+
+const ListMessage = new List(
+    "Por favor, escolha uma das opções abaixo:",
+    "Selecione",
+    sections,
+    "Bem-Vindo à BitSolution Company"
+);
+
 client.on("qr", (qr) => {
     console.log("QR RECEIVED");
     qrcode.generate(qr, { small: true });
@@ -39,6 +57,7 @@ client.on("message", async (message) => {
     switch (contact.state) {
         case 0:
             await message.reply(`Olá! Bem-Vindo à BitSolution Company! Como podemos ajudar Você?`);
+            await message.sendMessage(from, ListMessage);
             contact.state++;
             break;
     };
