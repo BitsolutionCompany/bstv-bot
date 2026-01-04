@@ -34,7 +34,8 @@ client.on("message", async (message) => {
     const steep = 1;
 
     if (steep === 1){
-        message.reply(`Echo: ${body}`);
+        client.sendMessage(from, `Bem vindo à Bitsolution Company! Sou seu assistente Virtual, como posso ajudar?`);
+        steep++;
     }
 });
 
