@@ -51,6 +51,7 @@ client.on("ready", () => {
 
 client.on("message", async (message) => {
     const { from, body } = message;
+    console.log(`Message from ${from}: ${body}`);
 
     const contact = (contacts[from] || (contacts[from] = { state: 0 }));
 
